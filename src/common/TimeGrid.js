@@ -105,7 +105,10 @@ var TimeGrid = Grid.extend({
 				if (nextSlot) {
 					nextStartTime = this.start.clone().time(nextSlot.start);
 
-					breakHeight = moment.duration(nextStartTime.diff(endTime)).asMinutes();
+					breakHeight = Math.round(moment.duration(nextStartTime.diff(endTime)).asMinutes() / 2);
+					if(breakHeight > 25){
+						breakHeight = 25;
+					}
 					breakHtml = (breakHeight > 0) ? '<tr class="fc-timeslots-break" style="height:' + breakHeight + 'px;"><td class="fc-break-axis"></td><td class="fc-timeslots-break-content"></td></tr>' : '';
 				}
 
